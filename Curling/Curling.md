@@ -42,19 +42,19 @@ Nmap done: 1 IP address (1 host up) scanned in 29.04 seconds
 
 I started The Proxy Caido to run while i explore the website ,The nmap scan Its running Joomla CMS 
 
-![Alt-text]([image link](https://github.com/CyberElam/HacktheBox-CTFs/blob/main/Curling/Screenshots/2025-09-13_17-08.png))
+![Alt-text](https://github.com/CyberElam/HacktheBox-CTFs/blob/main/Curling/Screenshots/2025-09-13_17-08.png)
 
 ran ffuf 
 
-![alt-text](ffuf link)
+![alt-text](https://github.com/CyberElam/HacktheBox-CTFs/blob/main/Curling/Screenshots/2025-09-13_17-11.png)
 
 also ran nuclei to get some easy wins and found a few vulnerabilities.
 
-![Alt-text](nuclei)
+![Alt-text](https://github.com/CyberElam/HacktheBox-CTFs/blob/main/Curling/Screenshots/2025-09-13_17-19.png)
 
 while reading at the blogs found a username **Floris** in case we need to brute force later.Since The website is running Joomla I Downloaded Joomscan to scan for vulnerabilities I could find on The Website.
 
-![Alt-text](Joomla)
+![Alt-text](https://github.com/CyberElam/HacktheBox-CTFs/blob/main/Curling/Screenshots/Joomla%20Screenshot.png)
 
 found the version Joomla 3.8.8 so googled If It has any Vulnerabilities and Mostly It showed Up to Be Vulnerable to XSS and LFI,So Read more about those vulns.
 According to its self-reported version number, the detected Joomla! application is affected by multiple vulnerabilities :
@@ -63,33 +63,35 @@ According to its self-reported version number, the detected Joomla! application 
 
 Those took me no where so while the tools were running i look at the source code of the website found a comment on the page of **secret.txt**
 
-![Alt-text](secret)
+![Alt-text](https://github.com/CyberElam/HacktheBox-CTFs/blob/main/Curling/Screenshots/secret.png)
 
 on that secret.txt there is this base64 string "Q3VybGluZzIwMTgh" so i just decoded it **echo "Q3VybGluZzIwMTgh" | base64 -d** and got This **Curling2018!** so im guessing its a password either for the Admin user or Floris.The creds work for Floris on The Admin Page **Floris:Curling2018!** .I went to the Templates and Tried to Replace the Beez3 template error.php file with a PHP reverse shell 
 
-![Alt-text](revshell)
+![Alt-text](https://github.com/CyberElam/HacktheBox-CTFs/blob/main/Curling/Screenshots/Revshell.png)
 
 And Went to the path of the error.php (http://10.10.10.150/templates/beez3/error.php) and got a reverse shell.
 
-![Alt-text](shell)
+![Alt-text](https://github.com/CyberElam/HacktheBox-CTFs/blob/main/Curling/Screenshots/shell.png)
 
 On Floris's Home Directory found a **password_backup** that looks like its some hexdump so i used **xxd** and **Cyberchef** to get the Password And got Floris's SSH Creds.**Floris:5d<wdCbdZu)|hChXll** After logging in to SSH I got The user flag.
 
-![Alt-text](floris)
+![Alt-text](https://github.com/CyberElam/HacktheBox-CTFs/blob/main/Curling/Screenshots/2025-09-13_18-05.png)
+![Alt-text](https://github.com/CyberElam/HacktheBox-CTFs/blob/main/Curling/Screenshots/2025-09-13_18-07.png)
 
 ## PrivEsc
 For PrivEsc First I tried Checking the Configuration file **/var/www/html/configuration.php** for credentials i could use.
 
-![Alt-text](config)
+![Alt-text](https://github.com/CyberElam/HacktheBox-CTFs/blob/main/Curling/Screenshots/config.png)
 
 I tried switching to root with those creds no luck so i continue with the manual enumeration,after a while i downloaded Linpeas and Pspy64 and ran them on the target machine.
 
-![Alt-text](lin)
-![Alt-text](psp)
+![Alt-text](https://github.com/CyberElam/HacktheBox-CTFs/blob/main/Curling/Screenshots/Lin.png)
+![Alt-text](https://github.com/CyberElam/HacktheBox-CTFs/blob/main/Curling/Screenshots/2025-09-13_18-22.png)
 
 After a while i saw something was being curlled so i looked at it and it was just curling at the local host **http://127.0.0.1** so i tried changing the protocol to file and just read the root.txt **file:///root/root.txt** 
 
-![Alt-text](root.txt)
+![Alt-text](https://github.com/CyberElam/HacktheBox-CTFs/blob/main/Curling/Screenshots/curl.png)
+![Alt-text](https://github.com/CyberElam/HacktheBox-CTFs/blob/main/Curling/Screenshots/2025-09-13_18-46.png)
 
 Got the root flag You Can also get the shadow and Passwd files and Try tracking the hashes.
 
