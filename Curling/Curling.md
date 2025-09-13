@@ -1,10 +1,10 @@
 # Curling HTB Machine
 
-[Curling Link](https://app.hackthebox.com/machines/Curling)
+https://app.hackthebox.com/machines/Curling
 
 ## Rustscan & Nmap scan
 
-![Alt-text](image-url)
+![Alt-text](https://github.com/CyberElam/HacktheBox-CTFs/blob/main/Curling/Screenshots/2025-09-13_17-02.png)
 
 Starting Nmap 7.95 ( https://nmap.org ) at 2025-09-13 17:04 SAST
 Stats: 0:00:16 elapsed; 0 hosts completed (1 up), 1 undergoing Script Scan
@@ -42,7 +42,7 @@ Nmap done: 1 IP address (1 host up) scanned in 29.04 seconds
 
 I started The Proxy Caido to run while i explore the website ,The nmap scan Its running Joomla CMS 
 
-![Alt-text](image link)
+![Alt-text]([image link](https://github.com/CyberElam/HacktheBox-CTFs/blob/main/Curling/Screenshots/2025-09-13_17-08.png))
 
 ran ffuf 
 
