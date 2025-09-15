@@ -73,14 +73,15 @@ So we Basically Have 3 ports open **SSH(22),HTTP(80) running Apache 2.4.18, and 
 
 ### Port 80 HTTP
 The web server shows The Default Apache Web Page  and wappalyzer shows Its running PHP , also viewed the source code nothing interesting.
-![Alt-text](apache)
+![Alt-text](https://github.com/CyberElam/HacktheBox-CTFs/blob/main/Help/Screenshots/apache%20default.png)
 
 Used **ffuf** to brute force for files or directories i could find.
 **ffuf -u http://help.htb/FUZZ -w <PATH>**
-![Alt-text](ffuf)
+![Alt-text](https://github.com/CyberElam/HacktheBox-CTFs/blob/main/Help/Screenshots/ffuf%20dir.png)
 
 Found **/javascript and /support** support looks more interesting so i checked it and it showed The **Help Desk Software by HelpDeskZ** since I open Caido Proxy I looked around and also used ffuf to fuzz for directoris and files,while fuzzing i found a readme file that has information about the version of helpDeskZ
-![Alt-text](helpversion)
+![Alt-text](https://github.com/CyberElam/HacktheBox-CTFs/blob/main/Help/Screenshots/support.png)
+![Alt-text](https://github.com/CyberElam/HacktheBox-CTFs/blob/main/Help/Screenshots/help%20version.png)
 
 so i Google **helpdeskz Version: 1.0.2 exploit** Found a Github exploit for a File Upload Vulnerability read the python code a little to try and Understand what It is doing, and Found another CVE SQLi vuln but requires Authentication so skipped it , Github exploit by **JubJubMcGrub** https://github.com/JubJubMcGrub/HelpDeskZ-1.0.2-File-Uplaod.**So from my understanding The HelpdeskZ software allows php files to be uploaded on the Submit Ticket tab http://help.htb/support/?v=submit_ticket when you upload a php file it would say the file aint allow but it's uploaded then the github script executes the scripts Im guessing I could just execute it manually but anyway .
 - Step 1 downloaded a php reverse shell
@@ -89,20 +90,21 @@ so i Google **helpdeskz Version: 1.0.2 exploit** Found a Github exploit for a Fi
 
 Dont forget to change the IP address on The php reverse shell then use nc to receive the connection
 
-![Alt-text](shell)
-Got The User.txt 
+![Alt-text](https://github.com/CyberElam/HacktheBox-CTFs/blob/main/Help/Screenshots/shell.png)
+Got A Reverse Shell And The user.txt flag.
+![Alt-text](https://github.com/CyberElam/HacktheBox-CTFs/blob/main/Help/Screenshots/user%20flag.png)
 
 #PrivEsc
 
 For PrivEsc i tried some manual aproach i didnt want to start with linpeas or stuff like that i explored the file system a little the check what priviledges I have I think i could read logs.
-![Alt-text](helppriv)
+![Alt-text](https://github.com/CyberElam/HacktheBox-CTFs/blob/main/Help/Screenshots/helppriv.png)
 
 so i checked if the kernel version has any exploit normally i would save that for the last but i saw it has some exploit https://www.exploit-db.com/exploits/44298 so i downloaded the exploit to the machine then used gcc to compile it then executed it and got root.
-![Alt-text](root)
+![Alt-text](https://github.com/CyberElam/HacktheBox-CTFs/blob/main/Help/Screenshots/root.png)
 
 After Im done with a machine I normally look at the Machine Info to see anything i missed or other ways to exploit the machine looks like we could have used the port 3000 for SQLi and get ssh creds
 
-![Alt-text](help)
+![Alt-text](https://github.com/CyberElam/HacktheBox-CTFs/blob/main/Help/Screenshots/help.png)
 
 Well box completed Happy Hacking.
 
