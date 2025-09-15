@@ -6,6 +6,8 @@ https://app.hackthebox.com/machines/Curling
 
 ![Alt-text](https://github.com/CyberElam/HacktheBox-CTFs/blob/main/Curling/Screenshots/2025-09-13_17-02.png)
 
+```
+
 Starting Nmap 7.95 ( https://nmap.org ) at 2025-09-13 17:04 SAST
 Stats: 0:00:16 elapsed; 0 hosts completed (1 up), 1 undergoing Script Scan
 NSE Timing: About 98.61% done; ETC: 17:04 (0:00:00 remaining)
@@ -37,6 +39,7 @@ HOP RTT       ADDRESS
 
 OS and Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
 Nmap done: 1 IP address (1 host up) scanned in 29.04 seconds
+```
 
 ### Port 80 (Website)
 
