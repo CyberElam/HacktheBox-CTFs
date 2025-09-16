@@ -75,40 +75,40 @@ Looks Like There are 2 ports open FTP (21) and HTTP (80).
 ## FTP 21
 Looks like FTP Allows Anonymous Access.I looked Around The FTP Server nothing much just some image and html file and a directory with other directories.
 
-![Alt-text](ftp)
+![Alt-text](https://github.com/CyberElam/HacktheBox-CTFs/blob/main/Devel/Screenshot/FTP.png)
 
 ## HTTP 80
 Looks Like The Website is running **Microsoft IIS httpd 7.5** Probably Vulnerable to some exploit.
-![Alt-text](http)
+![Alt-text](https://github.com/CyberElam/HacktheBox-CTFs/blob/main/Devel/Screenshot/http.png)
 
 While using ffuf looks like the directory from FTP is accessible from HTTP so i'm guessing maybe i could upload a asp or aspx reverse shell on the ftp server then execute the shell from The HTTP Server.Also while using nuclei i found a vulnerability **[CVE-2015-1635] [http] [critical] http://10.10.10.5/** But first i want to test my theory
 
-![Alt-text](cve)
+![Alt-text](https://github.com/CyberElam/HacktheBox-CTFs/blob/main/Devel/Screenshot/cve.png)
 
 so first i made a simple file **echo "Test" > test.txt** Then logged in to the ftp server and put the files and tried Accessing it from the Website.
+![Alt-text](https://github.com/CyberElam/HacktheBox-CTFs/blob/main/Devel/Screenshot/put.png)
+Accessing The file from the webserver.
+![Alt-text](https://github.com/CyberElam/HacktheBox-CTFs/blob/main/Devel/Screenshot/test_website.png)
 
-![Alt-text](website)
-
-so i uploaded a aspx reverse shell on the ftp server and got a shell.
-
-![Alt-text](shell)
-![Alt-text](dir)
+Afterwards so i uploaded a aspx reverse shell on the ftp server and got a shell.
+![Alt-text](https://github.com/CyberElam/HacktheBox-CTFs/blob/main/Devel/Screenshot/shell.png)
+![Alt-text](https://github.com/CyberElam/HacktheBox-CTFs/blob/main/Devel/Screenshot/dir.png)
 
 So I went to the website **https://www.revshells.com/** generated a Powershell reverse shell and started nc then paste the powershell reverse shell on the web shell.
 
-![Alt-text](reverse shell)
+![Alt-text](https://github.com/CyberElam/HacktheBox-CTFs/blob/main/Devel/Screenshot/reverse%20shell.png)
 
 # PrivEsc
 I made a msfvenom payload.
-![Alt-text](msf)
+![Alt-text](https://github.com/CyberElam/HacktheBox-CTFs/blob/main/Devel/Screenshot/msfvenom.png)
 
 Uploaded it on The machine executed it and got a meterpreter shell.
-![Alt-text](meterpreter)
+![Alt-text](https://github.com/CyberElam/HacktheBox-CTFs/blob/main/Devel/Screenshot/meterpreter.png)
 
 I ran the **local_exploit_suggester** to find a way to Privesc and i use the **exploit/windows/local/ms10_015_kitrap0d** and got **nt authority\system** And both of the Flags.
-
-![Alt-text](flags)
-![Alt-text](compl)
+![Alt-text](https://github.com/CyberElam/HacktheBox-CTFs/blob/main/Devel/Screenshot/local_ex.png)
+![Alt-text](https://github.com/CyberElam/HacktheBox-CTFs/blob/main/Devel/Screenshot/flags.png)
+![Alt-text](https://github.com/CyberElam/HacktheBox-CTFs/blob/main/Devel/Screenshot/2025-09-16_13-16.png)
 
 Afterwards I checked The Walkthrough for anything a missed but mostly It was The same approach Anyway We completed The box Happy Hacking.
 
