@@ -140,15 +140,15 @@ Nmap done: 1 IP address (1 host up) scanned in 430.81 seconds
 
 The Nmap scan results show a lot of ports open , normally i skip ssh we we have no credentials and Port 80 is redirecting me to 443 And Getting a Secure Connection Failed since the certificate version is 1.0 i can curl the website like this **curl -k --tlsv1.0 https://beep.htb** but im not planning on working on curl all day so i asked chatgpt how to solve that problem.
 
-![Alt-text](chatgpt)
+![Alt-text](https://github.com/CyberElam/HacktheBox-CTFs/blob/main/Beep/Screenshots/chatgpt.png)
 
 After that i could access the webite.
 
-![Alt-text](web)
+![Alt-text](https://github.com/CyberElam/HacktheBox-CTFs/blob/main/Beep/Screenshots/website.png)
 
 The website is running Elastix so i search using searchsploit if elastix has any vulnerability found a few.
 
-![Alt-text](search)
+![Alt-text](https://github.com/CyberElam/HacktheBox-CTFs/blob/main/Beep/Screenshots/searchsploit.png)
 
 The last for looks interesting to me so I decided to try them i first tested the LFI vuln read it and It looks the https://beep.htb/vtigercrm/graph.php?current_language=../../../../../../../..//etc/hosts endpoint is vulnerable to lfi i couldnt access the /etc/passwd or other important files but the script is getting the config file of elastix **../../../../../../../..//etc/amportal.conf** which has a username and password
 
@@ -158,12 +158,12 @@ AMPDBUSER=asteriskuser # AMPDBPASS=amp109 AMPDBPASS=jEhdIekWmdjE AMPENGINE=aster
 
 I tried SSH using The **asteriskuser** and using the password **jEhdIekWmdjE** but no luck then changed the user to root and got ssh
 
-![Alt-text](root)
+![Alt-text](https://github.com/CyberElam/HacktheBox-CTFs/blob/main/Beep/Screenshots/root.png)
 
 I got root access so i got the user and root flags
 
-![Alt-text](flags)
+![Alt-text](https://github.com/CyberElam/HacktheBox-CTFs/blob/main/Beep/Screenshots/root%20and%20user%20flag.png)
 
-![Alt-text](completed)
+![Alt-text](https://github.com/CyberElam/HacktheBox-CTFs/blob/main/Beep/Screenshots/completed.png)
 
 after wards I checked the descriptions and Walkthrough if there is anything or other ways to exploit the machine there was a CVE i think from 2012 which i tried but didnt work for me for some reason but i didnt spend much time to it so i moved on. Anyway Happy HAcking
